@@ -12,7 +12,7 @@ def contains_tool_change?(line)
 end
 
 def clean_file(input_path)
-  output_path = "Cleaned.#{input_path}"
+  output_path = "cleaned.#{input_path}"
   dropped_line_count = 0
   
   puts "Cleaning File: #{input_path}"
