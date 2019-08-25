@@ -12,7 +12,7 @@ def contains_tool_change?(line)
 end
 
 def clean_file(input_path)
-  output_path = "Cleaned.#{input_path}"
+  output_path = "cleaned.#{input_path}"
   dropped_line_count = 0
 
   puts '---'
@@ -38,9 +38,9 @@ def clean_current_directory
   puts "Cleaning current directory, reading *.nc"
   Dir.glob('*.nc') do |filename|
     # Do process our own output files
-    next if filename.start_with?('Cleaned.')
+    next if filename.start_with?('cleaned.')
     # Do not overwrite existing output files
-    if File.exists?("Cleaned.#{filename}")
+    if File.exists?("cleaned.#{filename}")
       puts "Skipping #{filename} because it's output already exists."
       next
     end
