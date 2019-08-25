@@ -5,9 +5,13 @@ This script looks for and removes:
 + G28 (homing) commands to keep us from starting/returning in a direct path through our work piece 
 + Txx Mx (Tool change) commands, that potentially stop the job and await human interaction
 
+# Prerequisites
++ Ruby - The language this script is written in - https://www.ruby-lang.org/en/documentation/installation/
++ Git - The way you can download this script - https://git-scm.com/downloads
++ Download the code using git by running `git clone https://github.com/alexhohe/cnc_gcode_stripper.git` from your terminal
++ Drop any number of files to be cleaned into the same folder
+
 # How do I run it?
-Install ruby in a manner that suits your OS 
-https://www.ruby-lang.org/en/documentation/installation/
 
 Execute the clean program by running `ruby clean.rb`
 By default, this looks at all `*.nc` files in the current folder and cleans them.
