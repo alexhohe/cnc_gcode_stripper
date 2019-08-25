@@ -12,9 +12,10 @@ def contains_tool_change?(line)
 end
 
 def clean_file(input_path)
-  output_path = "cleaned.#{input_path}"
+  output_path = "Cleaned.#{input_path}"
   dropped_line_count = 0
-  
+
+  puts '---'
   puts "Cleaning File: #{input_path}"
 
   File.open(output_path, "w") do |output_file|  
@@ -33,9 +34,24 @@ def clean_file(input_path)
   puts "Wrote File: #{output_path}"
 end
 
-if ARGV.length < 1
-  puts "You must supply a file path"
-  exit
+def clean_current_directory
+  puts "Cleaning current directory, reading *.nc"
+  Dir.glob('*.nc') do |filename|
+    # Do process our own output files
+    next if filename.start_with?('Cleaned.')
+    # Do not overwrite existing output files
+    if File.exists?("Cleaned.#{filename}")
+      puts "Skipping #{filename} because it's output already exists."
+      next
+    end
+
+    clean_file(filename)
+  end
 end
 
-clean_file(ARGV[0])
+if ARGV.length > 0
+  clean_file(ARGV[0])
+else
+  puts 'Called without arguments, processing all files in current directory.'
+  clean_current_directory
+end
